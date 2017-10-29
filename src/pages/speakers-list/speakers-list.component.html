@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Speakers
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="speakers">
+    <app-speaker-card *ngFor="let speaker of speakers" [speaker]="speaker"></app-speaker-card>
+  </div>
+</ion-content>

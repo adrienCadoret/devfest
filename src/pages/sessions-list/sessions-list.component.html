@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title start>
+      Sessions
+    </ion-title>
+    <ion-buttons end style="display: flex;">
+      <ion-label>Bookmarks</ion-label>
+      <ion-toggle [(ngModel)]="showBookmarks" (ionChange)="changeShowBookmarks(showBookmarks)" checked="false">Show bookmarks
+      </ion-toggle>
+    </ion-buttons>
+
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <div *ngIf="schedules">
+    <div *ngFor="let day of schedules">
+      <ion-card style="    background-color: #524f4f;">
+        <ion-card-content>
+          <h1 style="text-align: center; color: white;">{{day.date}}</h1>
+        </ion-card-content>
+      </ion-card>
+      <div *ngFor="let timeslot of day.timeslots">
+        <ion-card style="    background-color: darkgrey;">
+          <ion-card-content>
+            <h2 style="text-align: center; color: white;">{{timeslot.startTime}} : {{timeslot.endTime}}</h2>
+          </ion-card-content>
+        </ion-card>
+        <div *ngIf="sessions">
+          <div *ngFor="let sessionId of timeslot.sessions">
+            <app-session-card [session]="getSession(sessionId)"></app-session-card>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</ion-content>

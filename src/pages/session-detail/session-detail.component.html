@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Sessions
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <div *ngIf="session">
+    <ion-card>
+      <ion-card-content>
+        <img *ngIf="session.image" src="{{session.image}}">
+        <h1>{{session.title}}</h1>
+        <h2>{{session.type}}</h2>
+        <h4 *ngIf="session.category">{{session.category}}</h4>
+        <h4 *ngIf="session.complexity">{{session.complexity}}</h4>
+
+        <div *ngIf="session.tags">
+          <ion-badge *ngFor="let tag of session.tags"  item-end>{{tag}}</ion-badge>
+        </div>
+
+        <div [innerHTML]="session.description"></div>
+
+        <h1 *ngIf="speakers && speakers.length > 0">Speakers</h1>
+        <ion-card *ngFor="let speaker of speakers" (click)="goToDetailSpeaker(speaker.id)">
+          <ion-card-content>
+            {{speaker.name}}
+          </ion-card-content>
+
+        </ion-card>
+
+      </ion-card-content>
+    </ion-card>
+    <ion-fab style="right: 5%;
+    bottom: 15%; position: fixed">
+      <button ion-fab color="primary">
+        <ion-icon name="arrow-up">
+        </ion-icon>
+      </button>
+      <ion-fab-list side="top">
+        <button ion-fab (click)="openNotes()"><ion-icon name="document"></ion-icon></button>
+        <button ion-fab (click)="openQuestions()"><ion-icon name="help"></ion-icon></button>
+      </ion-fab-list>
+    </ion-fab>
+  </div>
+  <ion-card *ngIf="!session">
+    <ion-card-content>
+      session not found
+    </ion-card-content>
+  </ion-card>
+</ion-content>

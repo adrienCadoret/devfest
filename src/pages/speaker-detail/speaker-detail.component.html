@@ -1,0 +1,46 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Speakers
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-card *ngIf="speaker">
+    <ion-card-content>
+      <img *ngIf="speaker.photoUrl" src="{{speaker.photoUrl}}">
+      <h1>{{speaker.id}} : {{speaker.name}}, {{speaker.country}}</h1>
+      <h2>{{speaker.company}}</h2>
+      <div *ngIf="speaker.tags">
+        <ion-badge *ngFor="let tag of speaker.tags">{{tag}}</ion-badge>
+      </div>
+      <hr>
+      <div>{{speaker.bio}}</div>
+      <hr>
+      <h1>Sessions</h1>
+      <ion-card *ngFor="let session of sessions" (click)="goToDetailSession(session.id)">
+        <ion-card-content>
+          {{session.title}}
+        </ion-card-content>
+      </ion-card>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab style="right: 5%;
+    bottom: 15%; position: fixed">
+    <button ion-fab color="primary" (click)="addToContacts()">
+      <ion-icon name="person-add">
+      </ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-card *ngIf="!speaker">
+    <ion-card-content>
+      Speaker not found
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+

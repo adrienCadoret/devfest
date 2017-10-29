@@ -1,0 +1,61 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Notes
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="closeNotes()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+  <form>
+    <ion-item *ngIf="noteToAdd">
+      <ion-label color="primary" floating>Add note</ion-label>
+      <ion-input  [(ngModel)]="noteToAdd.note" [value]="noteToAdd.note" name="note"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="noteToAdd">
+      <img [src]="noteToAdd.imageBase64" *ngIf="noteToAdd.imageBase64" />
+    </ion-item>
+    <button ion-button (click)="addPictureFromCamera()">
+      <ion-icon name="camera"></ion-icon>
+    </button>
+    <button ion-button (click)="addPictureFromGallery()">
+      <ion-icon name="images"></ion-icon>
+    </button>
+    <button ion-button (click)="addCurrentNote()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </form>
+
+  <div *ngIf="notes">
+    <ion-card *ngFor="let note of notes">
+      <ion-card-content>
+        <p>{{note.note}}</p>
+        <div *ngIf="note.imageBase64">
+          <h1>Picture</h1>
+          <img [src]="note.imageBase64" *ngIf="note.imageBase64" (click)="openPicturePopUp(note)" />
+        </div>
+        <div *ngIf="note.video && note.video !== null">
+          <h1>Video</h1>
+          <video src="{{note.video}}" height="300" width="300" controls></video>
+        </div>
+      </ion-card-content>
+      <ion-row>
+        <ion-col>
+          <button ion-button (click)="deleteNote(note)">
+            <ion-icon name="remove-circle"></ion-icon>
+          </button>
+          <button ion-button (click)="recordAudio(note)">
+            <ion-icon name="microphone"></ion-icon>
+          </button>
+          <button ion-button (click)="recordVideo(note)">
+            <ion-icon name="videocam"></ion-icon>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-card>
+  </div>
+</ion-content>

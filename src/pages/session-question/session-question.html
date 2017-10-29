@@ -1,0 +1,42 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Question ?</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="close()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ion-card-content>
+      <form>
+        <ion-list>
+          <ion-item>
+            <ion-label color="primary" floating>Your question</ion-label>
+            <ion-input type="text" [(ngModel)]="questionToAdd" [value]="questionToAdd" name="questionToAdd"></ion-input>
+          </ion-item>
+        </ion-list>
+
+        <button ion-button (click)="addQuestion()">
+          <ion-icon name="add"></ion-icon>
+        </button>
+      </form>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="questionsForSession && questionsForSession.length > 0">
+    <ion-card-content>
+      <ion-list>
+        <ion-item ion-item *ngFor="let question of questionsForSession">
+          {{ question.string }}
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

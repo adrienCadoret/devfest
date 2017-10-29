@@ -1,0 +1,8 @@
+<ion-card *ngIf="session && toShow" (click)="goToDetailRoad(session.id, $event)">
+  <ion-card-content>
+    {{session.title}}
+      <ion-icon *ngIf="!session.favourite" style="float: right;" name="star-outline" (click)="changeFavourite()"></ion-icon>
+      <ion-icon *ngIf="session.favourite" style="float: right;" name="star" (click)="changeFavourite()"></ion-icon>
+  </ion-card-content>
+
+</ion-card>

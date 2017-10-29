@@ -1,0 +1,25 @@
+{
+  "name": "My Devfest App",
+  "short_name": "Devfest",
+  "start_url": "index.html",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "assets/imgs/new96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/imgs/new144x144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/imgs/new192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "background_color": "#4e8ef7",
+  "theme_color": "#4e8ef7"
+}
